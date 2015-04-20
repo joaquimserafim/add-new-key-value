@@ -1,6 +1,6 @@
 {
   "name": "add-new-key-value",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "add a new key/value to an JS Object",
   "main": "index.js",
   "files": [
