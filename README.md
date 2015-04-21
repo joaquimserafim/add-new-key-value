@@ -12,6 +12,8 @@ add a new key/value to an JS Object
 **addKeyValue({JS Object}, {key:string}, {value})**
 >the **JS Object** should valid as well the **key** or will return *undefined*
 
+> note: will overwrite existing keys
+
 **addKeyValue.strict({JS Object}, {key:string}, {value})**
 >the same as the above method but if the **value** is ***undefined*** will 
 >ignore the creation on the new property for the given object
