@@ -10,8 +10,12 @@ add a new key/value to an JS Object
 `var addKeyValue = require('add-new-key-value')`
 
 **addKeyValue({JS Object}, {key:string}, {value})**
+>the **JS Object** should valid as well the **key** or will return *undefined*
 
-the **JS Object** should valid as well the **key** or will return *undefined*
+**addKeyValue.strict({JS Object}, {key:string}, {value})**
+>the same as the above method but if the **value** is ***undefined*** will 
+>ignore the creation on the new property for the given object
+
 
 ## Usage
 
@@ -24,9 +28,24 @@ var pkg = require('./package.json')
 addKeyValue(pkg, 'version', '1.0.0')
 console.log(pkg.version)// should return '1.0.0'
 
+addKeyValue(pkg, 'version')
+console.log(pkg.version)// property should exist and return undefined
+
 // case 2
 var newPkg = addKeyValue(pkg, 'version', '1.0.0')
 console.log(newPkg.version)// should return '1.0.0'
+
+// case 3 - with strict
+var newPkg = addKeyValue.strict(pkg, 'version', null)
+console.log(newPkg.version)// should return null
+
+var newPkg = addKeyValue.strict(pkg, 'version', '1.0.0')
+console.log(newPkg.version)// should return '1.0.0'
+
+// case 4 - with strict
+var newPkg = addKeyValue.strict(pkg, 'version')
+console.log(newPkg.version)// property should not exist and return undefined
+
 ```
 
 

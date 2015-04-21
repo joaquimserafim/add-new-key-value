@@ -20,7 +20,7 @@ test('override the key "version" with a new value', function(assert) {
   assert.end()
 })
 
-test('don\'t pass a valid key (string) should return "undefined" object',
+test('pass an invalid key (string) should return "undefined" object',
 function(assert) {
   var json2 = require('./package.json')
   var r = addKeyValue(json2, null, 'test')
@@ -39,5 +39,29 @@ test('override the key "version" with a null/undefined/empty value the key' +
 test('passing a bad js object should return "undefined"', function(assert) {
   var r = addKeyValue(null, 'version', 'test')
   assert.deepEqual(r, undefined)
+  assert.end()
+})
+
+test('passing a value (not undefined) using the "strict"' +
+' method should return with the new property', function(assert) {
+  var nObj = {a: 1, b: 2}
+  addKeyValue.strict(nObj, 'c', 0)
+  assert.deepEqual(nObj.c, 0)
+  assert.end()
+})
+
+test('passing a "undefined" value and using the "strict" method should' +
+' ignore the new property', function(assert) {
+  var nObj = {a: 1, b: 2}
+  addKeyValue.strict(nObj, 'c')
+  assert.deepEqual(nObj.c, undefined)
+  assert.end()
+})
+
+test('passing a "null" value and using the "strict" method should' +
+' return the new property', function(assert) {
+  var nObj = {a: 1, b: 2}
+  addKeyValue.strict(nObj, 'c', null)
+  assert.deepEqual(nObj.c, null)
   assert.end()
 })

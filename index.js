@@ -10,3 +10,9 @@ function addKeyValue (obj, key, value) {
     return obj
   }
 }
+
+module.exports.strict = strictMode
+
+function strictMode (obj, key, value) {
+  return value !== undefined && addKeyValue(obj, key, value)
+}
